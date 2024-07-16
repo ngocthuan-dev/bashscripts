@@ -3,6 +3,8 @@ name: Update commit status on PR comments
 on:
   pull_request_review_comment:
     types: [created]
+    branches:
+      - main
 
 jobs:
   update-commit-status:
