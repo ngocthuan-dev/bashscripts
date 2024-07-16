@@ -3,14 +3,13 @@ name: Update commit status on PR comments
 on:
   pull_request_review_comment:
     types: [created]
-    branches:
-      - main
 
 jobs:
   update-commit-status:
     runs-on: ubuntu-latest
     steps:
       - name: Change commit status
+        if: github.event.pull_request.base.ref == 'main'
         uses: actions/github-script@v6
         with:
           script: |
@@ -23,6 +22,7 @@ jobs:
               description: 'Merged into beta branch',
               context: 'Should be merged into the beta branch first',
               headers: {
+                'Accept': 'application/vnd.github.v3+json',
                 'X-GitHub-Api-Version': '2022-11-28'
               }
-            })
+            });
