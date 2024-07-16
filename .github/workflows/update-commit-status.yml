@@ -1,0 +1,26 @@
+name: Update commit status on PR comments
+
+on:
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  update-commit-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Change commit status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            await github.request('POST /repos/{owner}/{repo}/statuses/{sha}', {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: '${{ github.event.pull_request.head.sha }}',
+              state: 'success',
+              target_url: '',
+              description: 'Merged into beta branch',
+              context: 'Should be merged into the beta branch first',
+              headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+              }
+            })
