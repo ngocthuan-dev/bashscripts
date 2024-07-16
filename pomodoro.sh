@@ -49,4 +49,3 @@ with title \"$FOCUS_NOTI_TITLE\" sound name \"$NOTIFICATION_SOUND\""
         read -n1 -rsp $'Press any key to continue or Ctrl+C to exit...\n'
     done
 fi
-
