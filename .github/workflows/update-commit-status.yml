@@ -5,6 +5,10 @@ on:
     types: [created]
     branches:
       - main
+  pull_request_review:
+    types: [submitted]
+    branches:
+      - main
 
 jobs:
   update-commit-status:
