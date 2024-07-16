@@ -17,4 +17,3 @@ case $1 in
         echo "Usage: $0 {add|list|remove} [task]"
         ;;
 esac
-
